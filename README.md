@@ -1,2 +1,3 @@
 # Coderhouse-Preentrega-2
-Programación con DOM
+Preentrega numero 2
+
