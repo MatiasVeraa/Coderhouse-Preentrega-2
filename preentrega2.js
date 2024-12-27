@@ -1,4 +1,4 @@
-// Trabajo Practico 1
+// Trabajo Practico 1 y 2
 
 const heroes = ["T-rex", "Sonico", "King Animal", "Genio", "Viloni", "Salpicador", "Gaucho", "Voltage", "Karate Kid", "Pantalon Marron",];
 let directorelegido;
@@ -244,20 +244,17 @@ function eleccion() {
 function descripciondirector() {
   alert("Te presento a los directores calificados para este equipo, elegí el que más te guste");
 
-  // Definir la variable para almacenar los nombress
   let nombresdedirectores = "";
 
-  // Crear un arreglo de directores
+  
   const directores = [director1, director2, director3, director4];
 
-  // Recorrer el arreglo de directores
   for (let i = 0; i < directores.length; i++) {
     let director = directores[i];
-    // Concatenar el nombre del director a la variable nombresdedirectores
+    
     nombresdedirectores += director.nombre + "  ";
   }
 
-  // Mostrar todos los nombres en un solo alert
   let decision = prompt ("Estos son los nombres de los prospectos para dirigir tu equipo. Escribi el nombre del prospecto que te gustaria ver en profundidad o escribi" + " continuar".toUpperCase() + " si queres pasar a la eleccion  \n \n"+ nombresdedirectores);
 
   let directorSeleccionado = null;
@@ -295,17 +292,17 @@ function elecciondirector() {
 
      let nombresdedirectores = "";
 
-  // Crear un arreglo de directores
+  
   const directores = [director1, director2, director3, director4];
 
-  // Recorrer el arreglo de directores
+
   for (let i = 0; i < directores.length; i++) {
     let director = directores[i];
-    // Concatenar el nombre del director a la variable nombresdedirectores
+   
     nombresdedirectores += director.nombre + "  ";
   }
 
-  // Mostrar todos los nombres en un solo alert
+ 
   let decision = prompt ("Estos son los nombres de los prospectos para dirigir tu equipo. Escribi el nombre del prospecto que te gustaria elegir"+ " \n"+ nombresdedirectores);
 
   
@@ -350,14 +347,13 @@ function villanos() {
   let resultado = malos.filter(x => x.nivel.toLowerCase().includes(filtrarvillanos));
 
   if (resultado.length > 0) {
-    // Muestra los villanos encontrados
+   
     let listaVillanos = resultado.map(villano => villano.nombre + ":" + " " + villano.historial  +" " + "Nivel: " + villano.nivel).join("\n\n");
     alert("Villanos encontrados:\n" + listaVillanos);
   } 
   else {
     alert("No se encontraron villanos con ese nivel. Intenta nuevamente.");
-    villanos(); // Vuelve a llamar la función si no se encontró coincidencia
+    villanos(); 
   }
 }
-
-villanos();
+inicio();
