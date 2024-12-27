@@ -1,6 +1,7 @@
 // Trabajo Practico 1
 
 const heroes = ["T-rex", "Sonico", "King Animal", "Genio", "Viloni", "Salpicador", "Gaucho", "Voltage", "Karate Kid", "Pantalon Marron",];
+let directorelegido;
 let muchachos = [];
 let grupo = 0;
 let nombre;
@@ -16,6 +17,27 @@ function Director (nombre,nombreclave,habilidad,desventaja,edad){
   const director2 = new Director("Valeria", "La Innovadora", "creadora", "paciencia", 40);
   const director3 = new Director("Diego", "El Inquebrantable", "negociador", "impulsividad", 55);
   const director4 = new Director("Sofia", "La Inspiradora", "visionaria", "inexperiencia", 28);
+
+  function malvados (nombre,historial,nivel){
+    this.nombre = nombre;
+    this.historial = historial;
+    this. nivel= nivel;
+    
+  }
+   
+   const villano1 =    new malvados("El Ladrón Silencioso", "Comenzó con pequeños robos en tiendas, sin llamar mucho la atención.", "Bajo");
+   const villano2 =    new malvados("Manos Rápidas", "Se especializa en carteristas y robos pequeños en mercados.", "Bajo");
+   const villano3 =    new malvados("El Buitre", "Robó coches de lujo, siempre eligiendo a sus víctimas entre los más débiles.", "Bajo");
+   const villano4 =    new malvados("La Sombra Roja", "Comenzó con robos violentos, pero se fue involucrando en asesinatos y tráfico de armas.", "Medio");
+   const villano5 =    new malvados("El Mercenario", "Trabajó como asesino a sueldo, luego se metió en el tráfico de drogas y trata de personas.", "Medio");
+   const villano6 =    new malvados("La Serpiente", "Primero fue un ladrón de poca monta, luego pasó a liderar una red de tráfico humano y asesinatos.", "Medio");
+   const villano7 =    new malvados("El Imperio del Caos", "Después de varias masacres, ahora controla una red criminal global que planea una invasión mundial.", "Alto");
+   const villano8 =    new malvados("La Mente Maestra", "A lo largo de los años ha manipulado gobiernos y empresas globales, creando una red secreta que domina el mundo.", "Alto");
+   const villano9 =    new malvados("El Conquistador Oscuro", "Comenzó como un líder rebelde, pero ahora dirige un imperio secreto con la intención de dominar todo el planeta.", "Alto");
+    
+    
+  
+    
 
 
 
@@ -148,6 +170,7 @@ function eleccion() {
   if (grupo >= 5) {
     alert("Ya tienes la cantidad máxima de héroes en tu equipo.");
     alert("Pasaremos a la eleccion de tu director");
+    descripciondirector()
     return;
   }
 
@@ -218,7 +241,7 @@ function eleccion() {
   }
 }
 
-function elecciondirector() {
+function descripciondirector() {
   alert("Te presento a los directores calificados para este equipo, elegí el que más te guste");
 
   // Definir la variable para almacenar los nombress
@@ -253,14 +276,53 @@ function elecciondirector() {
       `Desventaja: ${directorSeleccionado.desventaja}\n` +
       `Edad: ${directorSeleccionado.edad}`  
     );
-    elecciondirector()  
+    descripciondirector();
 
   } 
-  else if (decision==="continuar".toLocaleLowerCase()) {
+  else if (decision.toLocaleLowerCase( ) ==="continuar") {
 
-    mostrarEquipo()
+    elecciondirector()
   }
   
+  else {
+    alert("El nombre ingresado no coincide con ningún director.");
+    descripciondirector()
+
+  }
+}
+
+function elecciondirector() {
+
+     let nombresdedirectores = "";
+
+  // Crear un arreglo de directores
+  const directores = [director1, director2, director3, director4];
+
+  // Recorrer el arreglo de directores
+  for (let i = 0; i < directores.length; i++) {
+    let director = directores[i];
+    // Concatenar el nombre del director a la variable nombresdedirectores
+    nombresdedirectores += director.nombre + "  ";
+  }
+
+  // Mostrar todos los nombres en un solo alert
+  let decision = prompt ("Estos son los nombres de los prospectos para dirigir tu equipo. Escribi el nombre del prospecto que te gustaria elegir"+ " \n"+ nombresdedirectores);
+
+  
+  for (let i = 0; i < directores.length; i++) {
+    if (directores[i].nombre.toLowerCase() === decision.toLowerCase()) {
+        directorelegido  = directores[i];
+    break;
+    } 
+
+  }
+  if (directorelegido){ 
+    alert(" Buena eleccion " + directorelegido.nombre + " puede ser lo que necesita este equipo" );
+  
+    mostrarEquipo()
+
+  } 
+ 
   else {
     alert("El nombre ingresado no coincide con ningún director.");
     elecciondirector()
@@ -270,8 +332,32 @@ function elecciondirector() {
 
 
 function mostrarEquipo() {
-  alert("Buen trabajo reclutador " + nombre + "\n\n  Tu equipo actual se llama: " + nombreequipo + "\n\n Est formado por: "  + muchachos.join(", "));
+  alert("Buen trabajo reclutador " + nombre + "\n\n  Tu equipo actual se llama: " + nombreequipo + "\n\n Est formado por: "  + muchachos.join(", ") +  "\n\n y tu director es " + directorelegido.nombre)
+  villanos();
+
 }
-elecciondirector();
 
+function villanos() {
+  const malos = [villano1,villano2,villano3,villano4,villano5,villano6,villano7,villano8,villano9];
 
+  alert ("Veo potencial en tu equipo, te voy a dar una lista de villanos. Los mismos estan catalogados en nivel " + "alto ".toUpperCase() + "medio ".toUpperCase() + "bajo".toUpperCase() )
+
+  let filtrarvillanos= prompt ("Ingresa el nivel el villano").toLowerCase().trim();
+  if (filtrarvillanos === null || filtrarvillanos.trim()=== "") {
+    alert("Esto es importante." + " Presta atencion".toUpperCase())
+    villanos()
+  } 
+  let resultado = malos.filter(x => x.nivel.toLowerCase().includes(filtrarvillanos));
+
+  if (resultado.length > 0) {
+    // Muestra los villanos encontrados
+    let listaVillanos = resultado.map(villano => villano.nombre + ":" + " " + villano.historial  +" " + "Nivel: " + villano.nivel).join("\n\n");
+    alert("Villanos encontrados:\n" + listaVillanos);
+  } 
+  else {
+    alert("No se encontraron villanos con ese nivel. Intenta nuevamente.");
+    villanos(); // Vuelve a llamar la función si no se encontró coincidencia
+  }
+}
+
+villanos();
